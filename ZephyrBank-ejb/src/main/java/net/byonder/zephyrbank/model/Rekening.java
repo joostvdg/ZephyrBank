@@ -75,6 +75,9 @@ public abstract class Rekening implements Serializable {
         return new HashSet<Transactie>(this.mutaties);
     }
  
+    public String getType(){
+    	return this.getClass().getSimpleName();
+    }
    
     public boolean muteerSaldo(float mutatie) throws OnvoldoendeSaldoExceptie{
         if(( saldo + mutatie) < 0 ){
