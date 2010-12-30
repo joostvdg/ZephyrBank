@@ -4,6 +4,7 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
+          <string>GebruikerNieuw.xhtml</string>
           <string>index.xhtml</string>
           <string>WEB-INF/beans.xml</string>
           <string>WEB-INF/faces-config.xml</string>

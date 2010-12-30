@@ -18,10 +18,10 @@ import net.byonder.zephyrbank.model.Gebruiker;
  * 
  * @author jvdgriendt
  */
-@Stateless
+@Stateless(mappedName="gebruikerService", name="gebruikerService")
 public class GebruikerServiceImpl implements GebruikerService {
 
-	@EJB
+	@EJB(name="gebruikerDao")
 	GebruikerDao gebruikerDao;
 	
 	/* (non-Javadoc)
