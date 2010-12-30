@@ -4,7 +4,12 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
-          <string>index.jsp</string>
+          <string>index.xhtml</string>
+          <string>WEB-INF/beans.xml</string>
+          <string>WEB-INF/faces-config.xml</string>
+          <string>WEB-INF/web.xml</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/HelloWorldBean.class</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/GebruikerBean.class</string>
         </pathsSet>
       </path-set>
     </entry>
