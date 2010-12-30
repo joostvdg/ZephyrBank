@@ -6,11 +6,15 @@
 package net.byonder.zephyrbank.model;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,8 +34,13 @@ public class Transactie implements Serializable {
 
     @ManyToOne
     private Rekening rekeningNaar;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date transactieDatum;
 
     private float mutatie;
+    
+    private String mutatieMelding;
 
     /**
      * Default constructor voor persistence.
@@ -50,6 +59,7 @@ public class Transactie implements Serializable {
       this.rekeningNaar = rekeningNaar;
       this.rekeningVan = rekeningVan;
       this.mutatie = mutatie;
+      this.transactieDatum = new Date();
     }
 
     public float getMutatie(){
@@ -76,11 +86,34 @@ public class Transactie implements Serializable {
      *
      * @param id
      */
-    public void setId(Long id) {
+    @SuppressWarnings("unused")
+	private void setId(Long id) {
         this.id = id;
     }
 
-    /**
+
+	/**
+	 * @return the transactieDatum
+	 */
+	public Date getTransactieDatum() {
+		return transactieDatum;
+	}
+	
+	/**
+	 * @param mutatieMelding the mutatieMelding to set
+	 */
+	public void setMutatieMelding(String mutatieMelding) {
+		this.mutatieMelding = mutatieMelding;
+	}
+
+	/**
+	 * @return the mutatieMelding
+	 */
+	public String getMutatieMelding() {
+		return mutatieMelding;
+	}
+
+	/**
      *
      * @return
      */
@@ -116,5 +149,6 @@ public class Transactie implements Serializable {
     public String toString() {
         return "net.byonder.zephyrbank.model.Transactie[id=" + id + "]";
     }
+
 
 }

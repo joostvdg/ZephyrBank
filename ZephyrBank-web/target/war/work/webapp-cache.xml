@@ -4,13 +4,21 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
-          <string>GebruikerNieuw.xhtml</string>
+          <string>view/RekeningNieuw.xhtml</string>
+          <string>view/GebruikerNieuw.xhtml</string>
+          <string>view/RekeningLijst.xhtml</string>
+          <string>view/GebruikerLijst.xhtml</string>
+          <string>style/theme.css</string>
+          <string>templates/menu.xhtml</string>
+          <string>templates/template.xhtml</string>
           <string>index.xhtml</string>
           <string>WEB-INF/beans.xml</string>
           <string>WEB-INF/faces-config.xml</string>
           <string>WEB-INF/web.xml</string>
-          <string>GebruikerLijst.xhtml</string>
+          <string>index.jsp</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/util/FacesUtil.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/HelloWorldBean.class</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/RekeningBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/GebruikerBean.class</string>
           <string>WEB-INF/lib/log4j-1.2.16.jar</string>
         </pathsSet>
