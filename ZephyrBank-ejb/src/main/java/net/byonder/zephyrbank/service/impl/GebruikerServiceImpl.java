@@ -7,23 +7,37 @@ package net.byonder.zephyrbank.service.impl;
 
 import java.util.List;
 import net.byonder.zephyrbank.service.GebruikerService;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
+import net.byonder.zephyrbank.dao.GebruikerDao;
 import net.byonder.zephyrbank.model.Gebruiker;
 
 /**
- *
+ * 
  * @author jvdgriendt
  */
 @Stateless
 public class GebruikerServiceImpl implements GebruikerService {
 
-  @Override
-  public List<Gebruiker> geefAlleGebruikers() {
-    return null;
-  }
+	@EJB
+	GebruikerDao gebruikerDao;
+	
+	/* (non-Javadoc)
+	 * @see net.byonder.zephyrbank.service.GebruikerService#geefAlleGebruikers()
+	 */
+	@Override
+	public List<Gebruiker> geefAlleGebruikers() {
+		return gebruikerDao.vindAlle();
+	}
 
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
- 
+	/* (non-Javadoc)
+	 * @see net.byonder.zephyrbank.service.GebruikerService#nieuweGebruiker(net.byonder.zephyrbank.model.Gebruiker)
+	 */
+	@Override
+	public void nieuweGebruiker(Gebruiker gebruiker) {
+		gebruikerDao.bewaar(gebruiker);
+	}
+
 }

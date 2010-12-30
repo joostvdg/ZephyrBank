@@ -10,16 +10,24 @@ import javax.ejb.Local;
 import net.byonder.zephyrbank.model.Gebruiker;
 
 /**
- *
+ * 
  * @author jvdgriendt
  */
 @Local
 public interface GebruikerService {
 
- /**
-  * 
-  * @return
-  */
- public List<Gebruiker> geefAlleGebruikers();
-    
+	/**
+	 * Geeft een lijst terug van alle beschikbare gebruikers.
+	 * 
+	 * @return
+	 */
+	List<Gebruiker> geefAlleGebruikers();
+
+	/**
+	 * Zorgt dat een nieuwe gebruiker wordt gepersisteerd.
+	 * 
+	 * @param gebruiker de gebruiker die voor het eerst opgeslagen dient te worden.
+	 */
+	void nieuweGebruiker(Gebruiker gebruiker);
+
 }

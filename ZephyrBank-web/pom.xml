@@ -23,6 +23,19 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.16</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>net.byonder</groupId>
+	    	<artifactId>ZephyrBank-ejb</artifactId>
+		    <version>1.0-SNAPSHOT</version>
+		    <scope>provided</scope>
+		</dependency>
+	
+		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
 			<version>6.0</version>

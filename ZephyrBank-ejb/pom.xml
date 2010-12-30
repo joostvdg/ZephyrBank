@@ -13,6 +13,11 @@
     <name>ZephyrBank-ejb Java EE 6 EJB</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+    	<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.16</version>
+		</dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
