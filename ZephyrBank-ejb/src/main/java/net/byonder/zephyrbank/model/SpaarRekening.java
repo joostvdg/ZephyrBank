@@ -37,7 +37,21 @@ public class SpaarRekening extends Rekening implements Serializable {
         super(saldo);
     }
 
-    public float getOpgebouwdeRente(){
+    /**
+	 * @param gekoppeldeRekening the gekoppeldeRekening to set
+	 */
+	public void setGekoppeldeRekening(Rekening gekoppeldeRekening) {
+		this.gekoppeldeRekening = gekoppeldeRekening;
+	}
+
+	/**
+	 * @return the gekoppeldeRekening
+	 */
+	public Rekening getGekoppeldeRekening() {
+		return gekoppeldeRekening;
+	}
+
+	public float getOpgebouwdeRente(){
         return opgebouwdeRente;
     }
 
@@ -54,7 +68,6 @@ public class SpaarRekening extends Rekening implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof SpaarRekening)) {
             return false;
         }

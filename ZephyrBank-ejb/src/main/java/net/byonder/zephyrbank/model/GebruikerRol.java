@@ -21,7 +21,7 @@ import javax.persistence.Column;
 @Entity
 public class GebruikerRol implements Serializable {
 
-    private static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,7 +96,6 @@ public class GebruikerRol implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GebruikerRol)) {
             return false;
         }

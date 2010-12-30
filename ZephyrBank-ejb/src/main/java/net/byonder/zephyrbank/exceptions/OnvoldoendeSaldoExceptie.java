@@ -10,7 +10,12 @@ import javax.ejb.ApplicationException;
 @ApplicationException
 public class OnvoldoendeSaldoExceptie extends Exception{
 
-    public OnvoldoendeSaldoExceptie(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public OnvoldoendeSaldoExceptie(String message) {
         super(message);
     }
 

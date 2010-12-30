@@ -19,7 +19,9 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Instantie implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
+	private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -38,7 +40,23 @@ public class Instantie implements Serializable {
         this.id = id;
     }
 
-    @Override
+    public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+
+	public Gebruiker getStandaardGebruiker() {
+		return standaardGebruiker;
+	}
+
+	public void setStandaardGebruiker(Gebruiker standaardGebruiker) {
+		this.standaardGebruiker = standaardGebruiker;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -47,7 +65,6 @@ public class Instantie implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Instantie)) {
             return false;
         }

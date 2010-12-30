@@ -7,7 +7,6 @@ package net.byonder.zephyrbank.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Gebruiker implements Serializable {
     
-    private static long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -132,7 +131,6 @@ public class Gebruiker implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Gebruiker)) {
             return false;
         }
