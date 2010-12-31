@@ -30,7 +30,7 @@ public abstract class Rekening implements Serializable {
     @ManyToOne(cascade=CascadeType.ALL)
     private Gebruiker eigenaar;
 
-    @OneToMany(mappedBy = "rekeningVan")
+    @OneToMany(mappedBy = "rekeningVan", cascade=CascadeType.ALL)
     private Set<Transactie> mutaties;
 
     public Rekening(float saldo){

@@ -57,11 +57,18 @@ public class RekeningServiceImpl implements RekeningService{
 		Transactie transactie = new Transactie(vanRekening, naarRekening, mutatie);
 		vanRekening.voegMutatieToe(transactie);
 		naarRekening.voegMutatieToe(transactie);
+		updateRekening(vanRekening);
+		updateRekening(naarRekening);
 	}
 
 	@Override
 	public Rekening haalRegekeningOpViaId(long id) {
 		return rekeningDao.haalOp(id);
+	}
+
+	@Override
+	public void updateRekening(Rekening rekening) {
+		rekeningDao.update(rekening);
 	}
 
 }

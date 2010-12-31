@@ -37,4 +37,9 @@ public interface RekeningService {
 	 * @return
 	 */
 	Rekening haalRegekeningOpViaId(long id);
+
+	/**
+	 * @param rekening
+	 */
+	void updateRekening(Rekening rekening);
 }

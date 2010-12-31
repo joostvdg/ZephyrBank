@@ -1,9 +1,13 @@
 package net.byonder.zephyrbank.bean;
 
+import java.io.Serializable;
+
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import net.byonder.zephyrbank.exceptions.OnvoldoendeSaldoExceptie;
+import net.byonder.zephyrbank.model.Rekening;
 import net.byonder.zephyrbank.service.RekeningService;
 import net.byonder.zephyrbank.util.FacesUtil;
 
@@ -12,9 +16,15 @@ import net.byonder.zephyrbank.util.FacesUtil;
  * 
  */
 @Named(value = "boekingenBean")
-public class BoekingenBean {
+@SessionScoped
+public class BoekingenBean implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	@EJB
+	@EJB(name="rekeningService")
 	RekeningService rekeningService;
 
 	private long rekeningVan;
@@ -71,7 +81,9 @@ public class BoekingenBean {
 	public void opnemen() {
 		float bedragNegatief = bedrag * (-1);
 		try {
-			rekeningService.haalRegekeningOpViaId(rekeningVan).muteerSaldo(bedragNegatief);
+			Rekening rekening = rekeningService.haalRegekeningOpViaId(rekeningVan);
+			rekening.muteerSaldo(bedragNegatief);
+			rekeningService.updateRekening(rekening);
 			FacesUtil.addInfoMessage("Bedrag is opgenomen van de rekening");
 		} catch (OnvoldoendeSaldoExceptie e) {
 			FacesUtil.addWarningMessage("Rekening heeft onvoldoende saldo om de mutatie uit te voeren.");
@@ -80,8 +92,10 @@ public class BoekingenBean {
 
 	public void storten() {
 		try {
-			rekeningService.haalRegekeningOpViaId(rekeningVan).muteerSaldo(bedrag);
-			FacesUtil.addInfoMessage("Bedrag is opgenomen van de rekening");
+			Rekening rekening = rekeningService.haalRegekeningOpViaId(rekeningVan);
+			rekening.muteerSaldo(bedrag);
+			rekeningService.updateRekening(rekening);
+			FacesUtil.addInfoMessage("Bedrag is gestort op de rekening");
 		} catch (OnvoldoendeSaldoExceptie e) {
 			FacesUtil.addWarningMessage("Rekening heeft onvoldoende saldo om de mutatie uit te voeren.");
 		}
