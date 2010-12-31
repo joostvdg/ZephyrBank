@@ -74,6 +74,10 @@ public abstract class Rekening implements Serializable {
     public Set<Transactie> getMutaties(){
         return new HashSet<Transactie>(this.mutaties);
     }
+    
+    public boolean voegMutatieToe(Transactie transactie){
+    	return this.mutaties.add(transactie);
+    }
  
     public String getType(){
     	return this.getClass().getSimpleName();
@@ -84,6 +88,8 @@ public abstract class Rekening implements Serializable {
             throw new OnvoldoendeSaldoExceptie("Er is niet voldoende saldo beschikbaar.");
         } else {
             saldo =  (saldo + mutatie);
+            Transactie transactie = new Transactie(this, null, mutatie);
+            this.mutaties.add(transactie);
             return true;
         }
     }

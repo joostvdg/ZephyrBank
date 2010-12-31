@@ -7,6 +7,7 @@
           <string>view/RekeningNieuw.xhtml</string>
           <string>view/GebruikerNieuw.xhtml</string>
           <string>view/RekeningLijst.xhtml</string>
+          <string>view/Boekingen.xhtml</string>
           <string>view/GebruikerLijst.xhtml</string>
           <string>style/theme.css</string>
           <string>templates/menu.xhtml</string>
@@ -17,6 +18,7 @@
           <string>WEB-INF/web.xml</string>
           <string>index.jsp</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/util/FacesUtil.class</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/BoekingenBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/HelloWorldBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/RekeningBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/GebruikerBean.class</string>
