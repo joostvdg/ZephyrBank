@@ -9,10 +9,10 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Rekening Van" for="rekeningVan" />
-				<h:selectOneMenu id="rekeningVan"
+				<h:selectOneMenu id="rekeningVan" 
 					value="#{boekingenBean.rekeningVan}">
 					<f:selectItems value="#{rekeningBean.rekeningen}" var="rekening"
-						itemValue="#{rekening}" itemLabel="#{rekening.id}"
+						itemValue="#{rekening.id}" itemLabel="#{rekening.id}"
 						itemLabelEscaped="true"
 						noSelectionValue="#{rekeningenBean.rekeningen[0]}" />
 				</h:selectOneMenu>
@@ -21,7 +21,7 @@
 				<h:selectOneMenu id="rekeningNaar"
 					value="#{boekingenBean.rekeningNaar}">
 					<f:selectItems value="#{rekeningBean.rekeningen}" var="rekening"
-						itemValue="#{rekening}" itemLabel="#{rekening.id}"
+						itemValue="#{rekening.id}" itemLabel="#{rekening.id}"
 						itemLabelEscaped="true"
 						noSelectionValue="#{rekeningenBean.rekeningen[1]}" />
 				</h:selectOneMenu>

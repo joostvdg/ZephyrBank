@@ -31,7 +31,6 @@
 		<artifactId>maven-ear-plugin</artifactId>
 		<configuration>
 			<generateApplicationXml>true</generateApplicationXml>
-			<version>6</version>
 			<defaultLibBundleDir>lib</defaultLibBundleDir>
 			<finalName>ZephyrBank-ear</finalName>
 			<archive>
