@@ -26,6 +26,48 @@ public class BoekingenBean {
 	
 	private float bedrag;
 	
+	/**
+	 * @return the rekeningVan
+	 */
+	public Rekening getRekeningVan() {
+		return rekeningVan;
+	}
+
+	/**
+	 * @param rekeningVan the rekeningVan to set
+	 */
+	public void setRekeningVan(Rekening rekeningVan) {
+		this.rekeningVan = rekeningVan;
+	}
+
+	/**
+	 * @return the rekeningNaar
+	 */
+	public Rekening getRekeningNaar() {
+		return rekeningNaar;
+	}
+
+	/**
+	 * @param rekeningNaar the rekeningNaar to set
+	 */
+	public void setRekeningNaar(Rekening rekeningNaar) {
+		this.rekeningNaar = rekeningNaar;
+	}
+
+	/**
+	 * @return the bedrag
+	 */
+	public float getBedrag() {
+		return bedrag;
+	}
+
+	/**
+	 * @param bedrag the bedrag to set
+	 */
+	public void setBedrag(float bedrag) {
+		this.bedrag = bedrag;
+	}
+
 	public void opnemen(){
 		float bedragNegatief = bedrag * (-1);
 		try {
