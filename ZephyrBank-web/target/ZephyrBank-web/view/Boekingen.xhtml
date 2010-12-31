@@ -7,7 +7,7 @@
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="body">
 		<h:form>
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="2">
 				<h:outputLabel value="Rekening Van" for="rekeningVan" />
 				<h:selectManyListbox id="rekeningVan"
 					value="#{boekingenBean.rekeningVan}">
@@ -16,26 +16,28 @@
 						itemLabelEscaped="true"
 						noSelectionValue="#{rekeningenBean.rekeningen[0]}" />
 				</h:selectManyListbox>
-				<h:outputLabel value="" for="rekeningVan" />
 
 				<h:outputLabel value="Rekening Naar" for="rekeningNaar" />
 				<h:selectManyListbox id="rekeningNaar"
 					value="#{boekingenBean.rekeningNaar}">
-					<f:selectItems value="#{rekeningenBean.rekeningen}" var="rekening"
+					<f:selectItems value="#{rekeningBean.rekeningen}" var="rekening"
 						itemValue="#{rekening}" itemLabel="#{rekening.id}"
 						itemLabelEscaped="true"
 						noSelectionValue="#{rekeningenBean.rekeningen[0]}" />
 				</h:selectManyListbox>
-				<h:outputLabel value="" for="rekeningNaar" />
 
 				<h:outputLabel value="Bedrag" for="bedrag" />
 				<h:inputText id="bedrag" value="#{boekingenBean.bedrag}" />
-				<h:outputLabel value="" for="bedrag" />
 
-				<h:commandButton action="#{boekingenBean.storten}" value="Storten" />
-				<h:commandButton action="#{boekingenBean.opnemen}" value="Opnemen" />
-				<h:commandButton action="#{boekingenBean.overboeken}"
-					value="overboeken" />
+				<h:outputLabel value="" for="rekeningVan" />
+				<h:panelGroup>
+					<h:panelGrid columns="3">
+						<h:commandButton action="#{boekingenBean.storten}" value="Storten" />
+						<h:commandButton action="#{boekingenBean.opnemen}" value="Opnemen" />
+						<h:commandButton action="#{boekingenBean.overboeken}"
+							value="overboeken" />
+					</h:panelGrid>
+				</h:panelGroup>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>
