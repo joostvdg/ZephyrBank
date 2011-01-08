@@ -5,9 +5,11 @@
       <path-set>
         <pathsSet class="linked-hash-set">
           <string>view/RekeningNieuw.xhtml</string>
+          <string>view/TransactieLijst.xhtml</string>
           <string>view/GebruikerNieuw.xhtml</string>
           <string>view/RekeningLijst.xhtml</string>
           <string>view/Boekingen.xhtml</string>
+          <string>view/AuditLijst.xhtml</string>
           <string>view/GebruikerLijst.xhtml</string>
           <string>style/theme.css</string>
           <string>templates/menu.xhtml</string>
@@ -20,7 +22,9 @@
           <string>WEB-INF/classes/net/byonder/zephyrbank/util/FacesUtil.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/BoekingenBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/HelloWorldBean.class</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/TransactieBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/RekeningBean.class</string>
+          <string>WEB-INF/classes/net/byonder/zephyrbank/bean/AuditBean.class</string>
           <string>WEB-INF/classes/net/byonder/zephyrbank/bean/GebruikerBean.class</string>
           <string>WEB-INF/lib/log4j-1.2.16.jar</string>
         </pathsSet>

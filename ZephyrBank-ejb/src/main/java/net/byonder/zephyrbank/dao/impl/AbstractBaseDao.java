@@ -1,12 +1,17 @@
 package net.byonder.zephyrbank.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import net.byonder.zephyrbank.dao.AuditDao;
 import net.byonder.zephyrbank.dao.BaseDao;
+import net.byonder.zephyrbank.model.Audit;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -16,9 +21,12 @@ import org.apache.log4j.Logger;
  */
 public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
-	@PersistenceContext(name = "ZephyrBank" )
+	@PersistenceContext(name = "ZephyrBank")
 	protected EntityManager entityManager;
-	
+
+	@EJB
+	AuditDao auditDao;
+
 	private Logger log;
 
 	private final Class<T> clazz;
@@ -35,31 +43,53 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 	 */
 	@Override
 	public T haalOp(long id) {
-		log.info(String.format("Ophalen van een %s met id %d.",clazz.getSimpleName(), id  ));
+		log.info(String.format("Ophalen van een %s met id %d.", clazz.getSimpleName(), id));
 		return entityManager.find(clazz, id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.byonder.zephyrbank.dao.BaseDao#bewaar(java.lang.Object)
 	 */
 	@Override
 	public boolean bewaar(T t) {
-		log.info(String.format("Opslaan van een %s.",clazz.getSimpleName() ));
+		log.info(String.format("Opslaan van een %s.", clazz.getSimpleName()));
 		entityManager.persist(t);
+		if (t instanceof Audit) {
+		} else{
+			Audit audit = new Audit();
+			audit.setActie("Opslaan Entiteit");
+			audit.setDate(new Date());
+			audit.setOmschrijving(String.format("Persisteren van object %s.", clazz.getSimpleName()));
+			auditDao.bewaar(audit);
+		}
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.byonder.zephyrbank.dao.BaseDao#update(java.lang.Object)
 	 */
 	@Override
-	public boolean update(T t){
-		log.info(String.format("Opslaan van een %s.",clazz.getSimpleName() ));
+	public boolean update(T t) {
+		log.info(String.format("Updaten van een %s.", clazz.getSimpleName()));
 		entityManager.merge(t);
+		if (t instanceof Audit) {
+		} else{
+			Audit audit = new Audit();
+			audit.setActie("Updaten Entiteit");
+			audit.setDate(new Date());
+			audit.setOmschrijving(String.format("Updaten van object %s.", clazz.getSimpleName()));
+			auditDao.bewaar(audit);
+		}
 		return true;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.byonder.zephyrbank.dao.BaseDao#vindAlle()
 	 */
 	@SuppressWarnings("unchecked")
@@ -67,16 +97,20 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 	public List<T> vindAlle() {
 		String className = clazz.getSimpleName();
 		String classNameLower = clazz.getSimpleName().toLowerCase();
-		log.info(String.format("Ophalen van een lijst met alle %s.",className));
-		String queryString = String.format("SELECT %s FROM %s %s",classNameLower, className, classNameLower );
+		log.info(String.format("Ophalen van een lijst met alle %s.", className));
+		String queryString = String.format("SELECT %s FROM %s %s", classNameLower, className, classNameLower);
 		Query query = entityManager.createQuery(queryString);
-		List<T> lijst = (List<T>)query.getResultList();
+		List<T> lijst = (List<T>) query.getResultList();
 		log.info(String.format("Aantal resultaten gevonden: %d.", lijst.size()));
 		return lijst;
 	}
 
-	/* (non-Javadoc)
-	 * @see net.byonder.zephyrbank.dao.BaseDao#vindAllePaged(net.byonder.zephyrbank.dao.impl.PagingInstructions)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.byonder.zephyrbank.dao.BaseDao#vindAllePaged(net.byonder.zephyrbank
+	 * .dao.impl.PagingInstructions)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -84,10 +118,10 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 		// TODO : nog geen pagingInstructions geimplementeerd
 		String className = clazz.getSimpleName();
 		String classNameLower = clazz.getSimpleName().toLowerCase();
-		log.info(String.format("Ophalen van een lijst met alle %s.",className));
-		String queryString = String.format("SELECT %s FROM %s %s",classNameLower, className, classNameLower );
+		log.info(String.format("Ophalen van een lijst met alle %s.", className));
+		String queryString = String.format("SELECT %s FROM %s %s", classNameLower, className, classNameLower);
 		Query query = entityManager.createQuery(queryString);
-		List<T> lijst = (List<T>)query.getResultList();
+		List<T> lijst = (List<T>) query.getResultList();
 		log.info(String.format("Aantal resultaten gevonden: %d.", lijst.size()));
 		return lijst;
 	}

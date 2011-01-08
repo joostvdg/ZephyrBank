@@ -7,17 +7,21 @@ package net.byonder.zephyrbank.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 
+import Listener.Auditor;
+
 /**
  *
  * @author jvdgriendt
  */
 @Entity
+@EntityListeners(Auditor.class)
 public class Instantie implements Serializable {
     
 	private static final long serialVersionUID = 1L;

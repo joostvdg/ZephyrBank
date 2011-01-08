@@ -55,8 +55,25 @@ public class SpaarRekening extends Rekening implements Serializable {
         return opgebouwdeRente;
     }
 
-    public void updateRente(){
-        // TODO: Nog implementeren
+    /**
+     * Update de rente met de nieuwe opbouw.
+     * 
+     * @param rente de rente die is opgebouwd in de afgelope periode
+     */
+    public void updateRente(float rente){
+        this.opgebouwdeRente += rente;
+    }
+    
+    /**
+     * keert het bedrag uit dat is opgebouwd aan rente.
+     * En reset het opgebouwde bedrag naar 0.
+     * 
+     * @return de opgebouwde rente 
+     */
+    public float keerRenteUit(){
+    	float rente = opgebouwdeRente;
+    	opgebouwdeRente = 0.0f;
+    	return rente;
     }
 
     @Override
@@ -80,7 +97,7 @@ public class SpaarRekening extends Rekening implements Serializable {
 
     @Override
     public String toString() {
-        return "net.byonder.zephyrbank.model.SpaarRekening[id=" + id + "]";
+        return "SpaarRekening[id=" + id + "]";
     }
 
 }

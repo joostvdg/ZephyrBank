@@ -36,6 +36,13 @@
 						</f:facet>
 						<h:outputText value="#{rekening.type}"/>
 					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Opgebouwde Rente" />
+						</f:facet>
+						<h:outputText rendered="#{rekening.type eq 'SpaarRekening'}" value="#{rekening.opgebouwdeRente}"/>
+						<h:outputText rendered="#{rekening.type ne 'SpaarRekening'}" value="NVT"/>
+					</h:column>
 				</h:dataTable>
 		    </h:form>
 		</ui:define>

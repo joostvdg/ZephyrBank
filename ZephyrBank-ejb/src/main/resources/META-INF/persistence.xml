@@ -13,10 +13,12 @@
 		<class>net.byonder.zephyrbank.model.Rekening</class>
 		<class>net.byonder.zephyrbank.model.SpaarRekening</class>
 		<class>net.byonder.zephyrbank.model.Transactie</class>
+		<class>net.byonder.zephyrbank.model.Audit</class>
 		
 		<properties>
 			<property name="eclipselink.target-database" value="PostgreSQL" />
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-tables" /> 
+			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
 		</properties>
 
 	</persistence-unit>

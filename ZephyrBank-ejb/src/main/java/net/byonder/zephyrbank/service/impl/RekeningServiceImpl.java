@@ -7,11 +7,15 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import org.apache.log4j.Logger;
+
 import net.byonder.zephyrbank.dao.GebruikerDao;
 import net.byonder.zephyrbank.dao.RekeningDao;
 import net.byonder.zephyrbank.exceptions.OnvoldoendeSaldoExceptie;
 import net.byonder.zephyrbank.model.Gebruiker;
+import net.byonder.zephyrbank.model.KredietRekening;
 import net.byonder.zephyrbank.model.Rekening;
+import net.byonder.zephyrbank.model.SpaarRekening;
 import net.byonder.zephyrbank.model.Transactie;
 import net.byonder.zephyrbank.service.RekeningService;
 import net.byonder.zephyrbank.value.GebruikerNaam;
@@ -22,6 +26,8 @@ import net.byonder.zephyrbank.value.GebruikerNaam;
  */
 @Stateless(name="rekeningService", mappedName="rekeningService")
 public class RekeningServiceImpl implements RekeningService{
+	
+	private static final Logger LOG = Logger.getLogger(RekeningServiceImpl.class);
 	
 	@EJB 
 	RekeningDao rekeningDao;
@@ -69,6 +75,33 @@ public class RekeningServiceImpl implements RekeningService{
 	@Override
 	public void updateRekening(Rekening rekening) {
 		rekeningDao.update(rekening);
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void keerRenteUit(SpaarRekening spaarRekening, KredietRekening kredietRekening) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void updateRente(SpaarRekening rekening) {
+		float rente = berekenRente(rekening);
+		rekening.updateRente(rente);
+		updateRekening(rekening);
+	}
+
+	/**
+	 * Berekend de rente van een spaarrekening.
+	 * 
+	 * @param rekening
+	 * @return
+	 */
+	private float berekenRente(SpaarRekening rekening) {
+		float rente = (rekening.getSaldo() * 0.04f);
+		LOG.debug(String.format("Rente berekenen voor Rekening %s, rente is %f", rekening, rente));
+		return rente;
 	}
 
 }
