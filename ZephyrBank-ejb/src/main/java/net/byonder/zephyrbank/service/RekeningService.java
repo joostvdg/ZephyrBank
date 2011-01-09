@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import net.byonder.zephyrbank.exceptions.OnvoldoendeSaldoExceptie;
-import net.byonder.zephyrbank.model.KredietRekening;
 import net.byonder.zephyrbank.model.Rekening;
 import net.byonder.zephyrbank.model.SpaarRekening;
 import net.byonder.zephyrbank.value.GebruikerNaam;
@@ -49,9 +48,9 @@ public interface RekeningService {
 	 * Keert de opgebouwde rente van een spaarrekening uit op een kreditrekening.
 	 * 
 	 * @param spaarRekening de spaarrekening met de opgebouwde rente
-	 * @param kredietRekening de kredietrekening die de uitkeer krijgt gestort
+	 * @param rekening de rekening die de uitkeer krijgt gestort
 	 */
-	void keerRenteUit(SpaarRekening spaarRekening, KredietRekening kredietRekening);
+	void keerRenteUit(SpaarRekening spaarRekening, Rekening rekening);
 
 	/**
 	 * Update de rente van een spaarrekening.

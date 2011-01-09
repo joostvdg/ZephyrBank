@@ -37,17 +37,23 @@ public class TimedInterestService {
 		}
 	}
 	
-	@Schedule(minute="*/15",hour="*", persistent=false)
+	@Schedule(minute="*/2",hour="*", persistent=false)
 	public void keerRenteUitSchedule(){
+		boolean uitGekeerdOpKredit = false;
 		for(Rekening rekening : rekeningService.geefAlleRekening()){
 			if(rekening instanceof SpaarRekening){
 				if(rekening.getEigenaar() != null){
 					for(Rekening tmpRekening : rekening.getEigenaar().getRekeningen()){
 						if(tmpRekening instanceof KredietRekening){
+							uitGekeerdOpKredit = true;
 							LOG.debug(String.format("Rente uitkeren voor rekening %s ", rekening) );
 							rekeningService.keerRenteUit((SpaarRekening)rekening, (KredietRekening)tmpRekening);
 						}
 					}
+				}
+				if (!uitGekeerdOpKredit){
+					LOG.debug(String.format("Rente uitkeren voor rekening %s ", rekening) );
+					rekeningService.keerRenteUit((SpaarRekening)rekening, rekening);
 				}
 				
 			}

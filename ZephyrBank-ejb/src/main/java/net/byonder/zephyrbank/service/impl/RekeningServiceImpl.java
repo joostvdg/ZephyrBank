@@ -13,7 +13,6 @@ import net.byonder.zephyrbank.dao.GebruikerDao;
 import net.byonder.zephyrbank.dao.RekeningDao;
 import net.byonder.zephyrbank.exceptions.OnvoldoendeSaldoExceptie;
 import net.byonder.zephyrbank.model.Gebruiker;
-import net.byonder.zephyrbank.model.KredietRekening;
 import net.byonder.zephyrbank.model.Rekening;
 import net.byonder.zephyrbank.model.SpaarRekening;
 import net.byonder.zephyrbank.model.Transactie;
@@ -79,12 +78,12 @@ public class RekeningServiceImpl implements RekeningService{
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void keerRenteUit(SpaarRekening spaarRekening, KredietRekening kredietRekening) {
+	public void keerRenteUit(SpaarRekening spaarRekening, Rekening rekening) {
 		try {
 			float opgebouwdeRente = spaarRekening.keerRenteUit();
-			kredietRekening.muteerSaldo(opgebouwdeRente);
-			Transactie transactie = new Transactie(spaarRekening, kredietRekening, opgebouwdeRente);
-			kredietRekening.voegMutatieToe(transactie);
+			rekening.muteerSaldo(opgebouwdeRente);
+			Transactie transactie = new Transactie(spaarRekening, rekening, opgebouwdeRente);
+			rekening.voegMutatieToe(transactie);
 			LOG.info("Rente succesvol uitgekeerd" );
 		} catch (Exception e){
 			LOG.error(String.format("Kon rente niet uitkeren want: %s", e));
