@@ -80,8 +80,16 @@ public class RekeningServiceImpl implements RekeningService{
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void keerRenteUit(SpaarRekening spaarRekening, KredietRekening kredietRekening) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		try {
+			float opgebouwdeRente = spaarRekening.keerRenteUit();
+			kredietRekening.muteerSaldo(opgebouwdeRente);
+			Transactie transactie = new Transactie(spaarRekening, kredietRekening, opgebouwdeRente);
+			kredietRekening.voegMutatieToe(transactie);
+			LOG.info("Rente succesvol uitgekeerd" );
+		} catch (Exception e){
+			LOG.error(String.format("Kon rente niet uitkeren want: %s", e));
+		}
+		
 	}
 
 	@Override
