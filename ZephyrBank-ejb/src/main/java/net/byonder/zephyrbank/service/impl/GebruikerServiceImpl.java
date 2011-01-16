@@ -7,12 +7,10 @@ package net.byonder.zephyrbank.service.impl;
 
 import java.util.List;
 
-import net.byonder.zephyrbank.service.Auditor;
 import net.byonder.zephyrbank.service.GebruikerService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 
 import net.byonder.zephyrbank.dao.GebruikerDao;
 import net.byonder.zephyrbank.model.Gebruiker;
@@ -22,11 +20,10 @@ import net.byonder.zephyrbank.model.Gebruiker;
  * @author jvdgriendt
  */
 @Stateless(mappedName="gebruikerService", name="gebruikerService")
-@Interceptors(Auditor.class)
 public class GebruikerServiceImpl implements GebruikerService {
 
 	@EJB(name="gebruikerDao")
-	GebruikerDao gebruikerDao;
+	private GebruikerDao gebruikerDao;
 	
 	/* (non-Javadoc)
 	 * @see net.byonder.zephyrbank.service.GebruikerService#geefAlleGebruikers()
